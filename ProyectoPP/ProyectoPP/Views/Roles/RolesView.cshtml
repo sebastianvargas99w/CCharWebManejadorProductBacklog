@@ -1,0 +1,117 @@
+﻿@model ProyectoPP.Models.Roles
+
+@{
+    ViewBag.Title = "Administrar Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administrar Roles</h2>
+
+<p>
+
+</p>
+
+
+@using (Html.BeginForm("Aceptar", "Roles"))
+{
+    <p align="right">
+        <button type="button" onclick="Editar(@(Model.ListaRoles.Count),@(Model.ListaPermisos.Count))" class="btn btn-default">Editar</button>
+        </p>
+        <!--Tabla que muestra la información de lo roles-->
+        <table class="table">
+            <tr>
+                <th>
+                    Funcionalidades
+                </th>
+                <th></th>
+                <th>
+                    Roles
+                </th>
+            </tr>
+            <th></th>
+            <!--Muestra  los nombres de los roles-->
+            @for (int i = 0; i < Model.ListaRoles.Count; i++)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ListaRoles.ElementAt(i).Name)
+                </td>
+
+
+
+            }
+
+            <tr></tr>
+
+            @for (int i = 0; i < Model.ListaPermisos.Count; i++)
+            {
+                <!--Muestra los nombres de los permisos-->
+                <td>@Html.DisplayFor(modelItem => Model.ListaPermisos.ElementAt(i).permiso)</td>
+
+                for (int j = 0; j < Model.ListaRoles.Count; j++)
+                {
+                    for (int k = 0; k < Model.ListaGuardar.Count; k++)
+                    {
+                        <!--Revisa si un rol tiene un permiso en específico ascociado-->
+                        if (Model.ListaGuardar.ElementAt(k).permiso == Model.ListaPermisos.ElementAt(i).id_permiso
+                            && Model.ListaGuardar.ElementAt(k).rol == Model.ListaRoles.ElementAt(j).Id
+                            )
+                        {
+                            <td>
+                                <!--Muestra los valores de cada rol y permiso-->
+                                @Html.CheckBoxFor(model => Model.ListaGuardar[k].existe,new { @disabled = "disabled", @checked = "checked", @id = i + "_" + j })
+                                @Html.HiddenFor(model => Model.ListaGuardar[k].permiso, i)
+                                @Html.HiddenFor(model => Model.ListaGuardar[k].rol,j)
+                            </td>
+                        }
+
+
+                    }
+                }
+                <tr></tr>
+                
+
+            }
+
+
+
+
+
+        </table>
+
+
+<p align="left">
+    
+    <button class="btn btn-default" type="submit">Aceptar</button> 
+    <!--Recarga la pantalla sin guardar los cambios.-->
+    <button class="btn btn-default" onclick="location.href='@Url.Action("RolesView", "Roles")';return false;">Cancelar</button>
+</p>
+
+<br />
+<br />
+
+   @Html.Raw(TempData["msg"])
+
+}
+<!--Recarga la pantalla sin guardar los cambios(funcionalidad del botón "Cancelar")-->
+<script>
+    function Editar(numRoles, numPermisos)
+    {
+        alert("Asigne los roles usando los checkbox");
+
+        for (var i = 0; i < numPermisos; i++)
+        {
+            for (var j = 0; j < numRoles; j++)
+            {  
+                document.getElementById(i+'_'+j).removeAttribute("disabled");
+            }
+        }
+        
+    }
+</script>
+
+
+
+
+
+
+

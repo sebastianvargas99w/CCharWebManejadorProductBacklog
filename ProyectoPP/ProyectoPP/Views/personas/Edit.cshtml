@@ -1,0 +1,138 @@
+﻿@model ProyectoPP.Models.PersonaConRol
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Usuario</h2>
+<br/>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.cedula)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.carne, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.carne, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.carne, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.apellido1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.apellido1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.apellido1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.apellido2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.apellido2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.apellido2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Rol", htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            @{ // Booleans que determinan cuál checkbox está seleccionado cuando la vista se carga
+
+                bool est = false;
+                bool adm = false;
+                bool asi = false;
+
+                if (Model.rol == "1")
+                {     // Si el rol es de estudiante
+                    est = true;
+                }//if
+                else
+                {
+                    if (Model.rol == "2")
+                    { // Si el rol es de profesor
+                        adm = true;
+                    }//if
+                    else
+                    {                //si el rol es de asistente
+                        asi = true;
+                    }//else
+                }//else
+            }
+            
+            @if (true)
+            {
+                string resp = Html.Action("RevisarPermisosB", "Roles", new { permiso = "Editar rol" }).ToString();
+                if (resp == "1")
+                {
+                    <div class="col-md-10">
+                        <label for="Administrador">Administrador</label>
+                        <input type="radio" name="rol" id="Administrador" value="Profesor" checked="@adm"><br>
+                        <label for="Asistente">Asistente</label>
+                        <input type="radio" name="rol" id="Asistente" value="Asistente" checked="@asi"><br>
+                        <label for="Estudiante">Estudiante</label>
+                        <input type="radio" name="rol" id="Estudiantes" value="Estudiante" checked="@est"><br>
+                    </div>
+                }
+                else
+                {
+                    <label for="Estudiante">Estudiante</label>
+                    <input type="radio" name="rol" id="Estudiantes" value="Estudiante" checked="@est"><br>
+
+                }
+            }
+
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="pass" value="**********" disabled>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Aceptar" class="btn btn-default" />
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Edit", "personas", new { id = Model.cedula })';return false;">Cancelar</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

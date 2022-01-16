@@ -1,0 +1,80 @@
+﻿@model ProyectoPP.Models.Sprint2
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Crear Sprint</h2>
+
+@section Scripts {
+    <!--Todo esto es para el date picker-->
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script type="text/javascript">
+
+                             $(document).ready(function () {
+                                 $('input[type=datetime]').datepicker({
+                                     dateFormat: "yy-mm-dd",
+                                     changeMonth: true,
+                                     changeYear: true,
+                                     yearRange: "-60:+0"
+                                 });
+
+                             });
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.Label("Sprint", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.HiddenFor(m => Model.id)
+            @Html.HiddenFor(m => Model.proyecto)
+            @Html.HiddenFor(m => Model.proyectoId)
+
+            <div class="col-md-10">
+                <input type="text" name="pass" value=@(Model.id) disabled><br><br />
+            </div>
+        </div>
+
+            <div class="form-group">
+                <br>@Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fechaInicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fechaInicio, "", new { @class = "text-danger" })
+                    <br />
+                </div>
+            </div>
+
+
+            <br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.fechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fechaFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fechaFinal, "", new { @class = "text-danger" })
+                    <br /><br />
+                </div>
+            </div>
+
+
+
+            <br>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Aceptar" class="btn btn-default" />
+                    <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "sprints",new { id = Model.id, proyectoId = Model.proyectoId  } )';return false;">Cancelar</button>
+                </div>
+            </div>
+        </div>
+}

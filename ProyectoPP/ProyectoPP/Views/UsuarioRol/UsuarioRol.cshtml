@@ -1,0 +1,26 @@
+﻿@model ProyectoPP.Models.UsuarioRol
+
+@{
+    ViewBag.Title = "UsuarioRol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>UsuarioRol</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Aceptar" class="btn btn-default" />
+                <input type="submit" value="Cancelar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    </table>

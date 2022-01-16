@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15a4e25e67af49aabf2ee8899eccf46e" Name="Diagram1" ZoomLevel="106">
+        <EntityTypeShape EntityType="patopurificModelGeneral.AspNetRoles" Width="1.5" PointX="13.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.criteriosDeAceptacion" Width="1.5" PointX="16.625" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.fechas" Width="1.5" PointX="18.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.historiasDeUsuario" Width="1.5" PointX="14.375" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.permisos" Width="1.5" PointX="10.875" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.progreso" Width="1.5" PointX="18.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.proyecto" Width="1.5" PointX="9.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.tarea" Width="1.5" PointX="16.125" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__criteriosD__idHU__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__progreso__fechaC__57DD0BE4" ManuallyRouted="false" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__historias__proye__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__tarea__HU__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__progreso__56E8E7AB" ManuallyRouted="false" />
+        <AssociationConnector Association="patopurificModelGeneral.permisos_asociados_roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.persona" Width="1.5" PointX="12" PointY="9.375" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__persona__IdProye__74794A92" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__proyecto__lider__41EDCAC5" />
+        <AssociationConnector Association="patopurificModelGeneral.responsablesTarea" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.Documentacion" Width="1.5" PointX="16.625" PointY="14.25" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__Documentac__HUid__7A3223E8" />
+        <EntityTypeShape EntityType="patopurificModelGeneral.sprint" Width="1.5" PointX="12.125" PointY="13" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__historiasDeUsuar__7FEAFD3E" />
+        <AssociationConnector Association="patopurificModelGeneral.FK__sprint__proyecto__44CA3770" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

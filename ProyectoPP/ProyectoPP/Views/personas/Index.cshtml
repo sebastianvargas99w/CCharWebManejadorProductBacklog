@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ProyectoPP.Models.persona>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>Administración de Usuarios</h2>
+    @if (true)
+    {
+        string resp = Html.Action("RevisarPermisosB", "Roles", new { permiso = "Crear usuarios" }).ToString();
+        if (resp == "1")
+        {
+            <div class="form-group">
+                <div class="col-md-offset-10 col-md-10">
+                    <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto-->
+                    <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "personas")'">Insertar usuario</button>
+                </div>
+            </div>
+        }
+    }
+
+
+<br /><br />
+
+<table class="table">
+    
+    <tbody style="background-image:url(pato4.jpg); background-repeat:no-repeat">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.carne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+             </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                
+               
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.cedula })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

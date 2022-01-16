@@ -1,0 +1,55 @@
+﻿@model ProyectoPP.Models.sprint
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Sprint</h2>
+
+<h3>¿Desea eliminar este sprint?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proyecto.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proyecto.nombre)<br><br>
+        </dd>
+
+
+        <dt>
+            <label>Fecha de inicio</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaInicio)<br><br>
+        </dd>
+
+
+
+        <dt>
+            <label>Fecha de final</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaFinal)<br><br><br>
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Aceptar" class="btn btn-default" />
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Details", "sprints", new { id = Model.id, proyectoId = Model.proyectoId  })';return false;">Cancelar</button> 
+            
+        </div>
+    }
+</div>

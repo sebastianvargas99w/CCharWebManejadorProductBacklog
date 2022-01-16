@@ -1,0 +1,99 @@
+﻿@model ProyectoPP.Models.proyecto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Proyecto</h2>
+
+<h3>Está seguro que desa eliminar este proyecto?</h3>
+<br>
+<div>
+    
+    <dl class="dl-horizontal">
+
+        <dt>
+            <!-- Etiqueta para el nombre del proyecto que se ba a borrar -->
+            <label for="Nombre">Nombre</label>
+        </dt>
+        <dd><!-- Nombre del proyecto que se ba a borrar -->
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <br />
+
+        <dt>
+            <!-- Etiqueta para la descripción del proyecto que se ba a borrar -->
+            <label for="Descripcion">Descripción</label>
+        </dt>
+        <dd>
+            <!-- Descripción del proyecto que se ba a borrar -->
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <br />
+        <dt>
+            <!-- Etiqueta para la fecha de inicio del proyecto que se ba a borrar -->
+            <label for="FechaInicio">Fecha de inicio</label>
+        </dt>
+        <dd>
+            
+            <!-- Fecha de inicio del proyecto que se ba a borrar -->
+            <text>@Model.fechaInicio.ToShortDateString()</text>
+        </dd>
+
+        <br />
+
+        <dt>
+            <!-- Etiqueta para lafecha de finlacización del proyecto que se ba a borrar -->
+            <label for="FechaFinal">Fecha final</label>
+        </dt>
+        <dd>
+            <!-- Fecha de finlacización del proyecto que se ba a borrar -->
+            @Html.DisplayFor(model => model.fechaFinal)
+        </dd>
+
+        <br />
+
+        <dt>
+            <!-- Etiqueta para el nombre del lider del proyecto que se ba a borrar -->
+            <label for="lider">Lider</label>
+        </dt>
+        <dd>
+            <!-- Nombre del lider del proyecto que se ba a borrar -->
+            @Html.DisplayFor(model => model.persona1.nombre)
+        </dd>
+        <br>
+
+        <dt>
+            <!-- Etiqueta para el estado del proyecto que se ba a borrar -->
+            <label for="estado">Estado</label>
+        </dt>
+        <dd>
+            <!-- Estado del proyecto que se ba a borrar -->
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <br>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="submit" value="Aceptar" class="btn btn-default" />
+                <button class="btn btn-default" onclick="location.href='@Url.Action("Details", "proyecto", new { id = Model.id })';return false;">Cancelar</button>
+            </div>
+        </div>
+    }
+
+    <br>
+
+</div>
+
+
+
+

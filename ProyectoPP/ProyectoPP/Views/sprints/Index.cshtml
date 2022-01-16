@@ -1,0 +1,90 @@
+﻿@model ProyectoPP.Models.Sprint2
+@using ProyectoPP.Models
+@{
+    ViewBag.Title = "SprintPlanning";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administrar Sprints</h2>
+
+<div class="form-group">
+    <h4>Nombre del proyecto</h4>
+    @if (true)
+    {
+        string resp = Html.Action("EsEstudiante", "Roles").ToString();
+        if (resp == "1")
+        {
+            <h4>@ViewBag.NombreProyecto</h4>
+            //<button class="btn btn-default col-md-offset-10" onclick="location.href='@Url.Action("Create", "sprints")'">Nuevo Sprint</button>            
+        }
+        else
+        {
+            <button class="btn btn-default col-md-offset-10" onclick="location.href='@Url.Action("Create", "sprints", new {proyectoId = Model.proyectoId  } )'">Insertar Sprint</button>
+            
+        }
+
+    }
+
+</div>
+
+@using (Html.BeginForm("Actualizar", "sprints", FormMethod.Post, new { id = "sprintForm" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    string resp = Html.Action("EsEstudiante", "Roles").ToString();
+    // pregunta si no es estudiante
+    if (resp != "1")
+    {
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.proyectoId , (SelectList)ViewBag.Proyecto, "", htmlAttributes: new { @class = "form-control col-md-0", onchange = "$(\"#sprintForm\").submit()" })
+            @Html.ValidationMessageFor(model => model.proyectoId, "", new { @class = "text-danger" })
+
+        </div>
+        
+    }
+}
+<br /><br /><br />
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.id )
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.fechaInicio  )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaFinal)
+        </th>
+       
+        <th></th>
+    </tr>
+    @if (ViewBag.Sprints!= null)
+    {
+        foreach (var item in (List<sprint>)ViewBag.Sprints)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.id)
+                </td>
+
+                <td>
+                    <text>@item.fechaInicio.ToShortDateString()</text>
+                </td>
+                <td>
+                    <text>@item.fechaFinal.ToString()</text>
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "Details", "sprints", new { id = item.id, proyectoId = item.proyectoId }, null)
+                </td>
+            </tr>
+        }
+    }
+    
+    
+
+</table>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ProyectoPP.Models.proyecto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Proyectos</h2>
+
+<br>
+
+<div class="form-group">
+    
+    @if (true)
+    {
+        string resp = Html.Action("EsEstudiante", "Roles").ToString();
+        if (resp == "1")
+        {
+            <h4>@ViewBag.NombreProyecto </h4>
+        }
+        else
+        {
+            <div class="col-md-offset-10 col-md-10">
+                <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "proyecto",new { })'">Insertar Proyecto</button>
+            </div>
+        }
+
+    }
+
+</div>
+
+
+
+<br /><br /><br /><br />
+
+<table class="table">
+
+    <tbody style="background-image:url(pato4.jpg); background-repeat:no-repeat">
+        <!--Etiquetas de los atriutos importantes que se utilizaran -->
+        <tr>
+            <th>
+                <label>Nombre</label>
+            </th>
+            <th>
+                <label>Descripcion</label>
+            </th>
+            <th>
+                <label>Fecha de Inicio</label>
+            </th>
+            <th>
+                <label>Fecha de Término</label>
+            </th>
+            <th>
+                <label>Lider</label>
+            </th>
+            <th></th>
+        </tr>
+
+        <!-- Muestra la información de las tuplas de la base de dartos -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    <text>@item.fechaInicio.ToShortDateString()</text>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.persona1.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id })
+
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>

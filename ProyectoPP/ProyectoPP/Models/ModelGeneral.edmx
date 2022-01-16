@@ -1,0 +1,1177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="patopurificModelGeneral.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="criteriosDeAceptacion">
+          <Key>
+            <PropertyRef Name="idHU" />
+            <PropertyRef Name="numCriterio" />
+          </Key>
+          <Property Name="idHU" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="numCriterio" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contexto" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="evento" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="resultado" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="numeroEscenario" Type="int" />
+        </EntityType>
+        <EntityType Name="Documentacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="ContentType" Type="nvarchar" MaxLength="200" />
+          <Property Name="Data" Type="varbinary(max)" />
+          <Property Name="HUid" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="fechas">
+          <Key>
+            <PropertyRef Name="fechaCorte" />
+          </Key>
+          <Property Name="fechaCorte" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historiasDeUsuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="funcionalidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="resultado" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="prioridad" Type="int" Nullable="false" />
+          <Property Name="estimacion" Type="int" Nullable="false" />
+          <Property Name="proyectoId" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="sprintId" Type="varchar" MaxLength="25" />
+          <Property Name="NumeroEscenario" Type="int" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="permiso" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos_asociados_roles">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="id_rol" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" />
+          <Property Name="id" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdProyecto" Type="varchar" MaxLength="25" />
+          <Property Name="carne" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="progreso">
+          <Key>
+            <PropertyRef Name="HU" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="fechaCorte" />
+          </Key>
+          <Property Name="HU" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fechaCorte" Type="date" Nullable="false" />
+          <Property Name="porcentaje" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFinal" Type="date" />
+          <Property Name="lider" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="responsablesTarea">
+          <Key>
+            <PropertyRef Name="persona" />
+            <PropertyRef Name="HU" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="persona" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="HU" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sprint">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="proyectoId" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFinal" Type="date" />
+          <Property Name="proyectoId" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tarea">
+          <Key>
+            <PropertyRef Name="HU" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="HU" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="esfuerzo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__criteriosD__idHU__4B7734FF">
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="1" />
+          <End Role="criteriosDeAceptacion" Type="Self.criteriosDeAceptacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="criteriosDeAceptacion">
+              <PropertyRef Name="idHU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Documentac__HUid__7A3223E8">
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Documentacion" Type="Self.Documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Documentacion">
+              <PropertyRef Name="HUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__historias__proye__47A6A41B">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="1" />
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="historiasDeUsuario">
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__historiasDeUsuar__7FEAFD3E">
+          <End Role="sprint" Type="Self.sprint" Multiplicity="0..1" />
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sprint">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="proyectoId" />
+            </Principal>
+            <Dependent Role="historiasDeUsuario">
+              <PropertyRef Name="sprintId" />
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__permisos___id_pe__3587F3E0">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="1" />
+          <End Role="permisos_asociados_roles" Type="Self.permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__permisos___id_ro__367C1819">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="permisos_asociados_roles" Type="Self.permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__persona__id__65370702">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__persona__IdProye__74794A92">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="0..1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="IdProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__progreso__56E8E7AB">
+          <End Role="tarea" Type="Self.tarea" Multiplicity="1" />
+          <End Role="progreso" Type="Self.progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarea">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="progreso">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__progreso__fechaC__57DD0BE4">
+          <End Role="fechas" Type="Self.fechas" Multiplicity="1" />
+          <End Role="progreso" Type="Self.progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fechas">
+              <PropertyRef Name="fechaCorte" />
+            </Principal>
+            <Dependent Role="progreso">
+              <PropertyRef Name="fechaCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proyecto__lider__41EDCAC5">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="lider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__responsab__perso__51300E55">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="responsablesTarea" Type="Self.responsablesTarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="responsablesTarea">
+              <PropertyRef Name="persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__responsablesTare__5224328E">
+          <End Role="tarea" Type="Self.tarea" Multiplicity="1" />
+          <End Role="responsablesTarea" Type="Self.responsablesTarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarea">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="responsablesTarea">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sprint__proyecto__44CA3770">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="1" />
+          <End Role="sprint" Type="Self.sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sprint">
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tarea__HU__4E53A1AA">
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="HU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="patopurificModelGeneralStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="criteriosDeAceptacion" EntityType="Self.criteriosDeAceptacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documentacion" EntityType="Self.Documentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fechas" EntityType="Self.fechas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historiasDeUsuario" EntityType="Self.historiasDeUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos_asociados_roles" EntityType="Self.permisos_asociados_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="progreso" EntityType="Self.progreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proyecto" EntityType="Self.proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="responsablesTarea" EntityType="Self.responsablesTarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sprint" EntityType="Self.sprint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tarea" EntityType="Self.tarea" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__criteriosD__idHU__4B7734FF" Association="Self.FK__criteriosD__idHU__4B7734FF">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="criteriosDeAceptacion" EntitySet="criteriosDeAceptacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Documentac__HUid__7A3223E8" Association="Self.FK__Documentac__HUid__7A3223E8">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="Documentacion" EntitySet="Documentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__historias__proye__47A6A41B" Association="Self.FK__historias__proye__47A6A41B">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__historiasDeUsuar__7FEAFD3E" Association="Self.FK__historiasDeUsuar__7FEAFD3E">
+            <End Role="sprint" EntitySet="sprint" />
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__permisos___id_pe__3587F3E0" Association="Self.FK__permisos___id_pe__3587F3E0">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__permisos___id_ro__367C1819" Association="Self.FK__permisos___id_ro__367C1819">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__persona__id__65370702" Association="Self.FK__persona__id__65370702">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__persona__IdProye__74794A92" Association="Self.FK__persona__IdProye__74794A92">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__progreso__56E8E7AB" Association="Self.FK__progreso__56E8E7AB">
+            <End Role="tarea" EntitySet="tarea" />
+            <End Role="progreso" EntitySet="progreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__progreso__fechaC__57DD0BE4" Association="Self.FK__progreso__fechaC__57DD0BE4">
+            <End Role="fechas" EntitySet="fechas" />
+            <End Role="progreso" EntitySet="progreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proyecto__lider__41EDCAC5" Association="Self.FK__proyecto__lider__41EDCAC5">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="proyecto" EntitySet="proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__responsab__perso__51300E55" Association="Self.FK__responsab__perso__51300E55">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="responsablesTarea" EntitySet="responsablesTarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__responsablesTare__5224328E" Association="Self.FK__responsablesTare__5224328E">
+            <End Role="tarea" EntitySet="tarea" />
+            <End Role="responsablesTarea" EntitySet="responsablesTarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sprint__proyecto__44CA3770" Association="Self.FK__sprint__proyecto__44CA3770">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="sprint" EntitySet="sprint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tarea__HU__4E53A1AA" Association="Self.FK__tarea__HU__4E53A1AA">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="patopurificModelGeneral" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <NavigationProperty Name="permisos" Relationship="Self.permisos_asociados_roles" FromRole="AspNetRoles" ToRole="permisos" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="persona" Relationship="patopurificModelGeneral.FK__persona__id__65370702" FromRole="AspNetUsers" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="criteriosDeAceptacion">
+          <Key>
+            <PropertyRef Name="idHU" />
+            <PropertyRef Name="numCriterio" />
+          </Key>
+          <Property Name="idHU" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numCriterio" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contexto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="evento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resultado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="historiasDeUsuario" Relationship="Self.FK__criteriosD__idHU__4B7734FF" FromRole="criteriosDeAceptacion" ToRole="historiasDeUsuario" />
+          <Property Name="numeroEscenario" Type="Int32" />
+        </EntityType>
+        <EntityType Name="fechas">
+          <Key>
+            <PropertyRef Name="fechaCorte" />
+          </Key>
+          <Property Name="fechaCorte" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="progreso" Relationship="Self.FK__progreso__fechaC__57DD0BE4" FromRole="fechas" ToRole="progreso" />
+        </EntityType>
+        <EntityType Name="historiasDeUsuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="funcionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resultado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prioridad" Type="Int32" Nullable="false" />
+          <Property Name="estimacion" Type="Int32" Nullable="false" />
+          <Property Name="proyectoId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sprintId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="criteriosDeAceptacion" Relationship="Self.FK__criteriosD__idHU__4B7734FF" FromRole="historiasDeUsuario" ToRole="criteriosDeAceptacion" />
+          <NavigationProperty Name="proyecto" Relationship="Self.FK__historias__proye__47A6A41B" FromRole="historiasDeUsuario" ToRole="proyecto" />
+          <NavigationProperty Name="tarea" Relationship="Self.FK__tarea__HU__4E53A1AA" FromRole="historiasDeUsuario" ToRole="tarea" />
+          <Property Name="NumeroEscenario" Type="Int32" />
+          <NavigationProperty Name="Documentacion" Relationship="patopurificModelGeneral.FK__Documentac__HUid__7A3223E8" FromRole="historiasDeUsuario" ToRole="Documentacion" />
+          <NavigationProperty Name="sprint" Relationship="patopurificModelGeneral.FK__historiasDeUsuar__7FEAFD3E" FromRole="historiasDeUsuario" ToRole="sprint" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="Int32" Nullable="false" />
+          <Property Name="permiso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.permisos_asociados_roles" FromRole="permisos" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="progreso">
+          <Key>
+            <PropertyRef Name="HU" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="fechaCorte" />
+          </Key>
+          <Property Name="HU" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fechaCorte" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="porcentaje" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fechas" Relationship="Self.FK__progreso__fechaC__57DD0BE4" FromRole="progreso" ToRole="fechas" />
+          <NavigationProperty Name="tarea" Relationship="Self.FK__progreso__56E8E7AB" FromRole="progreso" ToRole="tarea" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="0" />
+          <Property Name="lider" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="historiasDeUsuario" Relationship="Self.FK__historias__proye__47A6A41B" FromRole="proyecto" ToRole="historiasDeUsuario" />
+          <NavigationProperty Name="persona" Relationship="patopurificModelGeneral.FK__persona__IdProye__74794A92" FromRole="proyecto" ToRole="persona" />
+          <NavigationProperty Name="persona1" Relationship="patopurificModelGeneral.FK__proyecto__lider__41EDCAC5" FromRole="proyecto" ToRole="persona" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sprint" Relationship="patopurificModelGeneral.FK__sprint__proyecto__44CA3770" FromRole="proyecto" ToRole="sprint" />
+        </EntityType>
+        <EntityType Name="tarea">
+          <Key>
+            <PropertyRef Name="HU" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="HU" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="esfuerzo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="historiasDeUsuario" Relationship="Self.FK__tarea__HU__4E53A1AA" FromRole="tarea" ToRole="historiasDeUsuario" />
+          <NavigationProperty Name="progreso" Relationship="Self.FK__progreso__56E8E7AB" FromRole="tarea" ToRole="progreso" />
+          <NavigationProperty Name="persona" Relationship="patopurificModelGeneral.responsablesTarea" FromRole="tarea" ToRole="persona" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__criteriosD__idHU__4B7734FF">
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="1" />
+          <End Role="criteriosDeAceptacion" Type="Self.criteriosDeAceptacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="criteriosDeAceptacion">
+              <PropertyRef Name="idHU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__progreso__fechaC__57DD0BE4">
+          <End Role="fechas" Type="Self.fechas" Multiplicity="1" />
+          <End Role="progreso" Type="Self.progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fechas">
+              <PropertyRef Name="fechaCorte" />
+            </Principal>
+            <Dependent Role="progreso">
+              <PropertyRef Name="fechaCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__historias__proye__47A6A41B">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="1" />
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="historiasDeUsuario">
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tarea__HU__4E53A1AA">
+          <End Role="historiasDeUsuario" Type="Self.historiasDeUsuario" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="HU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__progreso__56E8E7AB">
+          <End Role="tarea" Type="Self.tarea" Multiplicity="1" />
+          <End Role="progreso" Type="Self.progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarea">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="progreso">
+              <PropertyRef Name="HU" />
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <Association Name="permisos_asociados_roles">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="patopurificEntitiesGeneral" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="criteriosDeAceptacion" EntityType="Self.criteriosDeAceptacion" />
+          <EntitySet Name="fechas" EntityType="Self.fechas" />
+          <EntitySet Name="historiasDeUsuario" EntityType="Self.historiasDeUsuario" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" />
+          <EntitySet Name="progreso" EntityType="Self.progreso" />
+          <EntitySet Name="proyecto" EntityType="Self.proyecto" />
+          <EntitySet Name="tarea" EntityType="Self.tarea" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__criteriosD__idHU__4B7734FF" Association="Self.FK__criteriosD__idHU__4B7734FF">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="criteriosDeAceptacion" EntitySet="criteriosDeAceptacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__progreso__fechaC__57DD0BE4" Association="Self.FK__progreso__fechaC__57DD0BE4">
+            <End Role="fechas" EntitySet="fechas" />
+            <End Role="progreso" EntitySet="progreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__historias__proye__47A6A41B" Association="Self.FK__historias__proye__47A6A41B">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tarea__HU__4E53A1AA" Association="Self.FK__tarea__HU__4E53A1AA">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__progreso__56E8E7AB" Association="Self.FK__progreso__56E8E7AB">
+            <End Role="tarea" EntitySet="tarea" />
+            <End Role="progreso" EntitySet="progreso" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="permisos_asociados_roles" Association="Self.permisos_asociados_roles">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <EntitySet Name="persona" EntityType="patopurificModelGeneral.persona" />
+          <AssociationSet Name="FK__persona__id__65370702" Association="patopurificModelGeneral.FK__persona__id__65370702">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__persona__IdProye__74794A92" Association="patopurificModelGeneral.FK__persona__IdProye__74794A92">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proyecto__lider__41EDCAC5" Association="patopurificModelGeneral.FK__proyecto__lider__41EDCAC5">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="proyecto" EntitySet="proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="responsablesTarea" Association="patopurificModelGeneral.responsablesTarea">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+          <EntitySet Name="Documentacion" EntityType="patopurificModelGeneral.Documentacion" />
+          <AssociationSet Name="FK__Documentac__HUid__7A3223E8" Association="patopurificModelGeneral.FK__Documentac__HUid__7A3223E8">
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+            <End Role="Documentacion" EntitySet="Documentacion" />
+          </AssociationSet>
+          <EntitySet Name="sprint" EntityType="patopurificModelGeneral.sprint" />
+          <AssociationSet Name="FK__historiasDeUsuar__7FEAFD3E" Association="patopurificModelGeneral.FK__historiasDeUsuar__7FEAFD3E">
+            <End Role="sprint" EntitySet="sprint" />
+            <End Role="historiasDeUsuario" EntitySet="historiasDeUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sprint__proyecto__44CA3770" Association="patopurificModelGeneral.FK__sprint__proyecto__44CA3770">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="sprint" EntitySet="sprint" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="carne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdProyecto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="patopurificModelGeneral.FK__persona__id__65370702" FromRole="persona" ToRole="AspNetUsers" />
+          <NavigationProperty Name="proyecto" Relationship="patopurificModelGeneral.FK__persona__IdProye__74794A92" FromRole="persona" ToRole="proyecto" />
+          <NavigationProperty Name="proyecto1" Relationship="patopurificModelGeneral.FK__proyecto__lider__41EDCAC5" FromRole="persona" ToRole="proyecto" />
+          <NavigationProperty Name="tarea" Relationship="patopurificModelGeneral.responsablesTarea" FromRole="persona" ToRole="tarea" />
+        </EntityType>
+        <Association Name="FK__persona__id__65370702">
+          <End Type="patopurificModelGeneral.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="patopurificModelGeneral.persona" Role="persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__persona__IdProye__74794A92">
+          <End Type="patopurificModelGeneral.proyecto" Role="proyecto" Multiplicity="0..1" />
+          <End Type="patopurificModelGeneral.persona" Role="persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="IdProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proyecto__lider__41EDCAC5">
+          <End Type="patopurificModelGeneral.persona" Role="persona" Multiplicity="1" />
+          <End Type="patopurificModelGeneral.proyecto" Role="proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="lider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="responsablesTarea">
+          <End Type="patopurificModelGeneral.persona" Role="persona" Multiplicity="*" />
+          <End Type="patopurificModelGeneral.tarea" Role="tarea" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Documentacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HUid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="historiasDeUsuario" Relationship="patopurificModelGeneral.FK__Documentac__HUid__7A3223E8" FromRole="Documentacion" ToRole="historiasDeUsuario" />
+        </EntityType>
+        <Association Name="FK__Documentac__HUid__7A3223E8">
+          <End Type="patopurificModelGeneral.historiasDeUsuario" Role="historiasDeUsuario" Multiplicity="0..1" />
+          <End Type="patopurificModelGeneral.Documentacion" Role="Documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historiasDeUsuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Documentacion">
+              <PropertyRef Name="HUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sprint">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="proyectoId" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="0" />
+          <Property Name="proyectoId" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="historiasDeUsuario" Relationship="patopurificModelGeneral.FK__historiasDeUsuar__7FEAFD3E" FromRole="sprint" ToRole="historiasDeUsuario" />
+          <NavigationProperty Name="proyecto" Relationship="patopurificModelGeneral.FK__sprint__proyecto__44CA3770" FromRole="sprint" ToRole="proyecto" />
+        </EntityType>
+        <Association Name="FK__historiasDeUsuar__7FEAFD3E">
+          <End Type="patopurificModelGeneral.sprint" Role="sprint" Multiplicity="0..1" />
+          <End Type="patopurificModelGeneral.historiasDeUsuario" Role="historiasDeUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sprint">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="proyectoId" />
+            </Principal>
+            <Dependent Role="historiasDeUsuario">
+              <PropertyRef Name="sprintId" />
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sprint__proyecto__44CA3770">
+          <End Type="patopurificModelGeneral.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="patopurificModelGeneral.sprint" Role="sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sprint">
+              <PropertyRef Name="proyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="patopurificModelGeneralStoreContainer" CdmEntityContainer="patopurificEntitiesGeneral">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="criteriosDeAceptacion">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.criteriosDeAceptacion">
+              <MappingFragment StoreEntitySet="criteriosDeAceptacion">
+                <ScalarProperty Name="numeroEscenario" ColumnName="numeroEscenario" />
+                <ScalarProperty Name="idHU" ColumnName="idHU" />
+                <ScalarProperty Name="numCriterio" ColumnName="numCriterio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="contexto" ColumnName="contexto" />
+                <ScalarProperty Name="evento" ColumnName="evento" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fechas">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.fechas">
+              <MappingFragment StoreEntitySet="fechas">
+                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historiasDeUsuario">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.historiasDeUsuario">
+              <MappingFragment StoreEntitySet="historiasDeUsuario">
+                <ScalarProperty Name="NumeroEscenario" ColumnName="NumeroEscenario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="funcionalidad" ColumnName="funcionalidad" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="estimacion" ColumnName="estimacion" />
+                <ScalarProperty Name="proyectoId" ColumnName="proyectoId" />
+                <ScalarProperty Name="sprintId" ColumnName="sprintId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="progreso">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.progreso">
+              <MappingFragment StoreEntitySet="progreso">
+                <ScalarProperty Name="HU" ColumnName="HU" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proyecto">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.proyecto">
+              <MappingFragment StoreEntitySet="proyecto">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="lider" ColumnName="lider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tarea">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.tarea">
+              <MappingFragment StoreEntitySet="tarea">
+                <ScalarProperty Name="HU" ColumnName="HU" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="esfuerzo" ColumnName="esfuerzo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="patopurificModelGeneral.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="permisos_asociados_roles" TypeName="patopurificModelGeneral.permisos_asociados_roles" StoreEntitySet="permisos_asociados_roles">
+            <EndProperty Name="permisos">
+              <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="id_rol" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="persona">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="carne" ColumnName="carne" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="responsablesTarea" TypeName="patopurificModelGeneral.responsablesTarea" StoreEntitySet="responsablesTarea">
+            <EndProperty Name="tarea">
+              <ScalarProperty Name="id" ColumnName="id" />
+              <ScalarProperty Name="HU" ColumnName="HU" />
+            </EndProperty>
+            <EndProperty Name="persona">
+              <ScalarProperty Name="cedula" ColumnName="persona" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Documentacion">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.Documentacion">
+              <MappingFragment StoreEntitySet="Documentacion">
+                <ScalarProperty Name="HUid" ColumnName="HUid" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sprint">
+            <EntityTypeMapping TypeName="patopurificModelGeneral.sprint">
+              <MappingFragment StoreEntitySet="sprint">
+                <ScalarProperty Name="proyectoId" ColumnName="proyectoId" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

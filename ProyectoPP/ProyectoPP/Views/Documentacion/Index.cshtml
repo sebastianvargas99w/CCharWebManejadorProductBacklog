@@ -1,0 +1,54 @@
+﻿@model IEnumerable < ProyectoPP.Models.DocumentacionModel >
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html> 
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Documentacion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="postedFile" />
+        <input type="submit" id="btnUpload" value="Upload" />
+    }
+    <hr />
+
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th style="width:50px">File ID</th>
+            <th style="width:120px">File Name</th>
+            <th style="width:80px">Download</th>
+        </tr>
+            
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file.Id</td>
+                <td>@file.Nombre</td>
+                <td>
+                    @using (Html.BeginForm("DownloadFile", "Documentacion", FormMethod.Post))
+                    {
+                        <input type="hidden" id="hfFileId" name="FileId" value="@file.Id"/>
+                        <input type="submit" value="Descargar" class="btn btn-default" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function DownloadFile(fileId) {
+            $("#hfFileId").val(fileId);
+            $("#btnDownload")[0].click();
+        };
+    </script>
+    
+</body>
+</html>

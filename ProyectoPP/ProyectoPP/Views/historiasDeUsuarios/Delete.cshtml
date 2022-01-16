@@ -1,0 +1,98 @@
+﻿@model ProyectoPP.Models.historiasDeUsuario
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Desea eliminar esta historia de usuario?</h3>
+<div>
+    <h4>historiasDeUsuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proyecto.nombre)
+            <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proyecto.nombre)<br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id)<br /><br />
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol)<br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.funcionalidad)<br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.funcionalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resultado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resultado)<br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prioridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prioridad)<br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimacion)<br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroEscenario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroEscenario)
+        </dd>
+
+        
+
+       
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="submit" value="Aceptar" class="btn btn-default" />
+                <button class="btn btn-default" onclick="location.href='@Url.Action("Details", "historiasDeUsuarios", new { id = Model.id })';return false;">Cancelar</button>
+            </div>
+        </div>
+    }
+</div>

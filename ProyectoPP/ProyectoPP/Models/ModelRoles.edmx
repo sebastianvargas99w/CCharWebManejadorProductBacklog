@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="patopurificModelRoles.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="permiso" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos_asociados_roles">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="id_rol" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__permisos___id_pe__3587F3E0">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="1" />
+          <End Role="permisos_asociados_roles" Type="Self.permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__permisos___id_ro__367C1819">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="permisos_asociados_roles" Type="Self.permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="patopurificModelRolesStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos_asociados_roles" EntityType="Self.permisos_asociados_roles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__permisos___id_pe__3587F3E0" Association="Self.FK__permisos___id_pe__3587F3E0">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__permisos___id_ro__367C1819" Association="Self.FK__permisos___id_ro__367C1819">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="patopurificModelRoles" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="permisos" Relationship="Self.permisos_asociados_roles" FromRole="AspNetRoles" ToRole="permisos" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="Int32" Nullable="false" />
+          <Property Name="permiso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.permisos_asociados_roles" FromRole="permisos" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="permisos_asociados_roles">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="patopurificEntitiesRoles" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" />
+          <AssociationSet Name="permisos_asociados_roles" Association="Self.permisos_asociados_roles">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="patopurificModelRolesStoreContainer" CdmEntityContainer="patopurificEntitiesRoles">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="patopurificModelRoles.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="patopurificModelRoles.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="permisos_asociados_roles" TypeName="patopurificModelRoles.permisos_asociados_roles" StoreEntitySet="permisos_asociados_roles">
+            <EndProperty Name="permisos">
+              <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="id_rol" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

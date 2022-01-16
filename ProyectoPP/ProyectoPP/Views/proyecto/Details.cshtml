@@ -1,0 +1,90 @@
+﻿@model ProyectoPP.Models.proyecto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de Proyecto</h2>
+
+<div>
+
+    <h4>Nombre del Proyecto: @Html.DisplayFor(model => model.nombre)</h4>
+        
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-10">
+            <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto en el orden-->
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Edit", "proyecto", new { id = Model.id })'">Editar</button>
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Delete", "proyecto", new { id = Model.id })'">Eliminar</button>
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            <label for="Nombre">Nombre</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <br/>
+
+        <dt>
+            <label for="Descripcion">Descripción</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <br/>
+        
+        <dt>
+            <label for="FechaInicio">Fecha de inicio</label>
+        </dt>
+        <dd>
+            <text>@Model.fechaInicio.ToShortDateString() </text>
+        </dd>
+
+        <br />
+
+        <dt>
+            <label for="FechaFinal">Fecha final</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechaFinal)
+        </dd>
+
+        <br />
+
+        <dt>
+            <label for="lider">Lider</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.persona1.nombre)
+        </dd>
+
+        <br>
+
+        <dt>
+            <label for="estado">Estado</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <br>
+
+        <dt>
+            <label for="Grupo">Grupo de Trabajo</label>
+        </dt>
+        <dd>
+            @Html.ListBox("Grupo de Trabajo", (MultiSelectList)ViewBag.Grupo, htmlAttributes: new { @class = "form-control", @readOnly = true })
+        </dd>
+                 
+
+        <br />
+
+    </dl>
+</div>
+

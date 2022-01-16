@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProyectoPP.Models.tarea>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tareas HU: @ViewBag.HUid</h2>
+
+<div class="form-group">
+    <div class="col-md-offset-10 col-md-10">
+        <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto en el orden-->
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "tareas", new { HU = @ViewBag.HUid })'">Insertar Tarea</button>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.esfuerzo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.esfuerzo)
+        </td>
+        <td>
+            @Html.ActionLink("Detalles", "Details", new { HU = item.HU, id = item.id }) 
+        </td>
+    </tr>
+}
+
+</table>

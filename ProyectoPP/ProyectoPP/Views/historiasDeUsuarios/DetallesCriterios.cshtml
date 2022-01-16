@@ -1,0 +1,80 @@
+﻿@model ProyectoPP.Models.criteriosDeAceptacion
+
+@{
+    ViewBag.Title = "DetallesCriterios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <br>
+    <h2>Detalles de Criterios de Aceptacion</h2>
+    <hr/>
+
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-10">
+            <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto en el orden-->
+            <button class="btn btn-default" onclick="location.href='@Url.Action("EditarCriterio", "historiasDeUsuarios", new { id = Model.numCriterio})'">Editar</button>
+            <button class="btn btn-default" onclick="location.href='@Url.Action("EliminarCriterio", "historiasDeUsuarios", new { id =Model.numCriterio})'">Eliminar</button>
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            <label>Id</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.historiasDeUsuario.id)<br><br />
+            <br>
+        </dd>
+
+        
+
+        <dt>
+            <label>Número de Escenario</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroEscenario)<br><br />
+            <br>
+        </dd>
+
+        <dt>
+            <label>Nombre</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)<br><br />
+            <br>
+        </dd>
+
+        <dt>
+            <label>Contexto</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contexto)<br><br />
+            <br>
+        </dd>
+
+        <dt>
+            <label>Evento</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.evento)<br><br />
+            <br>
+        </dd>
+
+        <dt>
+            <label>Resultado</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resultado)<br><br />
+            <br>
+        </dd>
+        
+
+    </dl>
+</div>

@@ -1,0 +1,122 @@
+﻿@using ProyectoPP.Models
+@model ProyectoPP.Models.DatosSprintPlanning
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sprint Planning</h2>
+<br><br>
+
+@using (Html.BeginForm("ActualizarSprintPlanning", "sprints", FormMethod.Post, new { id = "SPForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+
+        @Html.Label("Proyecto", htmlAttributes: new { @class = "control-label col-md-1" })
+
+        @Html.DropDownListFor(m => m.ProyectoId, (SelectList)ViewBag.Proyecto, "", htmlAttributes: new { @class = "form-control col-md-2", onchange = "$(\"#SPForm\").submit()" })
+        @Html.ValidationMessageFor(model => model.ProyectoId, "", new { @class = "text-danger" })
+
+        @Html.Label("Sprint", htmlAttributes: new { @class = "control-label col-md-1 col-md-offset-3" })
+
+        @Html.DropDownListFor(m => m.SprintID, (SelectList)ViewBag.Sprint, "", htmlAttributes: new { @class = "form-control col-md-1", onchange = "$(\"#SPForm\").submit()" })
+        @Html.ValidationMessageFor(model => model.SprintID, "", new { @class = "text-danger" })
+
+    </div>
+}
+
+<br><br><br><br>
+
+<table class="table">
+    <tr>
+
+        <th>
+            ID
+        </th>
+
+        <th>
+            Alias
+        </th>
+
+        <th>
+            Resultado
+        </th>
+        
+        <th>
+            Prioridad
+        </th>
+        
+        <th>
+            Estimación
+        </th>
+             
+    </tr>
+
+    @foreach (var item in (List<historiasDeUsuario>)ViewBag.HU)
+    {
+        <tr>
+            <th>
+                @Html.Raw(item.id)
+            </th>
+
+            <th>
+                @Html.Raw(item.funcionalidad)
+            </th>
+
+            <th>
+                @Html.Raw(item.resultado)
+            </th>
+
+            <th>
+                @Html.Raw(item.prioridad)
+            </th>
+
+            <th>
+                @Html.Raw(item.estimacion)
+            </th>
+
+            <td>
+                @Html.ActionLink("Planificar", "Index", "tareas", new { HU = item.id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br>
+<h2>Hitos</h2>
+<br>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="col-md-offset-10 col-md-10">
+            <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto en el orden-->
+            <button class="btn btn-default" onclick="location.href='@Url.Action("CreateHito", "sprints")'">Agregar Fecha</button>
+            <br>
+            <br>
+        </div>
+    </div>
+}
+<table class="table">
+
+    <tr>
+        <th>
+            Fecha
+        </th>
+    </tr>
+
+    @foreach (var item in Model.fechaC)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.fechaCorte)
+            </td>
+        </tr>
+    }
+
+
+</table>

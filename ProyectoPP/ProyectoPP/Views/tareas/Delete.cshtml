@@ -1,0 +1,63 @@
+﻿@model ProyectoPP.Models.tarea
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body bgcolor="FFFFFF">
+    <h2>Eliminar</h2>
+
+    <h3>¿Está seguro que desea eliminar esta tarea?</h3>
+
+    <div>
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <br />
+
+            <dt>
+                @Html.DisplayNameFor(model => model.esfuerzo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.esfuerzo)
+            </dd>
+
+            <br />
+
+            <dt>
+                @Html.DisplayNameFor(model => model.historiasDeUsuario.id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.historiasDeUsuario.id)
+            </dd>
+
+            <br />
+
+        </dl>
+
+        <!--Cada método que devuelva algo para un método post del controlador, tiene que llevar un begin form-->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="submit" value="Aceptar" class="btn btn-default" />
+                    <button class="btn btn-default" onclick="location.href='@Url.Action("Details", "tareas", new { HU = Model.HU, id = Model.id })';return false;">Cancelar</button>
+                </div>
+            </div>
+        }
+
+        <br /><br />
+
+    </div>
+
+</body>

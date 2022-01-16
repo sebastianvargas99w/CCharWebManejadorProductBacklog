@@ -1,0 +1,63 @@
+﻿@model ProyectoPP.Models.Sprint2
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de sprint</h2>
+
+<div>
+    <h4>Sprint  @Model.id</h4>
+    <hr />
+
+
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-10">
+            <!--Estos botones funcionan como los action links. Solo que el orden de los parametros es un poco distinto en el orden-->
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Edit", "sprints", new { id = Model.id, proyectoId  = Model.proyectoId })'">Editar</button>
+            
+            <button class="btn btn-default" onclick="location.href='@Url.Action("Delete", "sprints", new { id = Model.id, proyectoId = Model.proyectoId  })'">Eliminar</button>
+               
+
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proyecto.nombre)
+        </dt>
+
+        <dd>
+            <text>@ViewBag.nombreProyecto</text>
+            @Html.DisplayFor(model => model.proyecto.nombre)<br><br>
+        </dd>
+
+
+
+
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaInicio)
+        </dt>
+        <dd>
+            <text>@Model.fechaInicio.ToShortDateString()</text><br><br>
+        </dd>
+
+
+
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaFinal)<br><br>
+        </dd>
+
+        
+
+    </dl>
+</div>
+

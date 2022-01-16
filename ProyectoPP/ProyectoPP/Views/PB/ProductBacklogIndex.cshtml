@@ -1,0 +1,87 @@
+﻿@model ProyectoPP.Models.ModeloProductBacklog
+
+@{
+    ViewBag.Title = "Product Backlog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+</head>
+<body>
+    <h2>Product Backlog</h2>
+
+    <Br>
+
+@using (Html.BeginForm("Actualizar", "PB", FormMethod.Post, new { id = "proyectoForm" }))
+{
+    @Html.AntiForgeryToken()
+
+   <div class="form-group">
+         @Html.LabelFor(model => model.ProyectoID, htmlAttributes: new { @class = "control-label col-md-3" }) 
+
+        <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "historiasDeUsuarios")'">Insertar H.U.</button>
+        
+        <div class="col-md-2">
+            @Html.DropDownListFor(m => m.ProyectoID, (SelectList)ViewBag.Proyecto, "Seleccione un proyecto...", htmlAttributes: new { @class = "form-control col-md-2", onchange="$(\"#proyectoForm\").submit()" })
+            @Html.ValidationMessageFor(model => model.ProyectoID, "", new { @class = "text-danger" })
+            
+        </div>
+    </div>
+}
+    <br /><br /><br>
+
+    <table class="table">
+        <tr>
+
+            <th>
+                Sprint ID
+            </th>
+
+            <th>
+                Identificador
+            </th>
+
+            <th>
+                Funcionalidad
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Resultado
+            </th>
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model.ListaPB)
+        {
+            <tr>
+                <td>
+                @Html.DisplayFor(model => item.sprintId)
+                </td>
+
+                <td>
+                @Html.DisplayFor(model => item.id)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(model => item.funcionalidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.rol)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.resultado)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "DetallePB","historiasDeUsuarios", new { id = item.id}, null)
+                </td>
+            </tr>
+        }
+     
+</table>
+</body>
+
+
